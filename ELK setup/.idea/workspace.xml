@@ -5,27 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bad55222-d129-4a4d-8903-0d2856014f56" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../ELK/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ELK/.idea/ELK.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ELK/.idea/material_theme_project_new.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ELK/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ELK/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ELK/docker-compose.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ELK/logstash/config/logstash.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ELK/logstash/pipeline/logstash.conf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring/src/main/java/com/hello/spring/Application.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring/src/main/java/com/hello/spring/HelloController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring/src/main/resources/logback-spring.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring/src/test/java/com/hello/spring/ApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,13 +15,25 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "feehaam"
+  }
 }]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/feehaam/Centralized_Logging_ELK.git",
+    "accountId": "7b31eac1-beea-4c26-be7a-db18ae3ff6e2"
+  }
 }]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2oKvxX3qyatGDNAOTPhXNa1breC" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -52,7 +44,7 @@
     "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "com.codeium.enabled": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -93,7 +85,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1730631330645</updated>
-      <workItem from="1730631332943" duration="421000" />
+      <workItem from="1730631332943" duration="818000" />
     </task>
     <servers />
   </component>
