@@ -1,0 +1,26 @@
+input {
+  tcp {
+    # This input plugin listens for TCP connections on the specified port.
+    port => 5000
+    # The 'codec' setting specifies the data format that Logstash should expect.
+    # 'json' codec will parse incoming data as JSON, allowing for structured data processing.
+    codec => json
+  }
+}
+
+output {
+  elasticsearch {
+    # This output plugin sends processed data to an Elasticsearch instance.
+    # 'hosts' specifies the destination Elasticsearch node(s). In this case,
+    # it's referring to the Elasticsearch service by its hostname 'elasticsearch'
+    # running on port 9200.
+    hosts => "elasticsearch:9200"
+
+    # The 'index' setting determines the name of the index in Elasticsearch
+    # where the records will be stored. Here, the index name is dynamically
+    # generated using the pattern "springboot-%{app}", where '%{app}' is a
+    # placeholder for a field in the log data, allowing index names to vary
+    # based on the incoming data.
+    index => "springboot-%{app}"
+  }
+}
