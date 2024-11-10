@@ -1,29 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
-    <appender name="logstash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-        <destination>localhost:5000</destination>
-        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
-            <providers>
-                <mdc />
-                <context />
-                <logLevel />
-                <loggerName />
-                <pattern>
-                    <pattern>
-                        {
-                        "app": "test-log-application_1"
-                        }
-                    </pattern>
-                </pattern>
-                <threadName />
-                <message />
-                <logstashMarkers />
-                <stackTrace />
-            </providers>
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>/var/log/application_1/app.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- logs are saved in src/logs/app-2023-09-15.log, etc. -->
+            <fileNamePattern>src/logs/application_1.log</fileNamePattern>
+            <maxHistory>30</maxHistory> <!-- keep 30 days' worth of logs -->
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
+
     <root level="info">
-        <appender-ref ref="logstash" />
+        <appender-ref ref="FILE" />
     </root>
 </configuration>

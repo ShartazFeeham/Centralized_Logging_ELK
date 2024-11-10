@@ -46,6 +46,19 @@ services:
     depends_on:  # Ensures Logstash starts after Elasticsearch.
       - elasticsearch
 
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:8.3.3
+    container_name: filebeat
+    user: root  # Run as root if necessary for file access
+    command: ["filebeat", "-e", "--strict.perms=false"]
+    volumes:
+      - ./filebeat.yml:/usr/share/filebeat/filebeat.yml:ro  # Mount your Filebeat config
+      - E:/Code/Centralized logging/spring app 1/src/logs/app.log:/var/log/app_1.log:ro  # Mount logs from your application
+    networks:
+      - elastic
+    depends_on:
+      - logstash  # Ensure Filebeat starts after Logstash
+
 networks:  # Defines custom networks.
   elastic:
     driver: bridge  # Specifies the bridge driver for creating an isolated network.
