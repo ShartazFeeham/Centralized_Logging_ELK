@@ -7,7 +7,6 @@ filebeat.inputs:
 output.logstash:
   hosts: ["logstash:5044"]  # Send logs to Logstash
 
-# Optional: Add processors to enhance log data e.g., add metadata
 processors:
   - add_host_metadata: ~
   - add_cloud_metadata: ~
