@@ -1,19 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+
+    <!-- Include base logging configuration from Spring Boot -->
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
-    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>/var/log/application_1/app.log</file>
+    <!-- Define a property for the paths to store logs -->
+    <property name="INFO_LOG_PATH" value="src/logs/info.log" />
+    <property name="ERROR_LOG_PATH" value="src/logs/error.log" />
+
+    <!-- INFO level log configuration -->
+    <appender name="INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- Define the file path for INFO logs -->
+        <file>${INFO_LOG_PATH}</file>
+        <!-- Define the rolling policy for log rotation based on time -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!-- logs are saved in src/logs/app-2023-09-15.log, etc. -->
-            <fileNamePattern>src/logs/application_1.log</fileNamePattern>
-            <maxHistory>30</maxHistory> <!-- keep 30 days' worth of logs -->
+            <!-- Use a pattern for naming log files, including the date and hour -->
+            <fileNamePattern>logs/info/info.%d{yyyy-MM-dd-HH}.log</fileNamePattern>
+            <!-- Specify the maximum number of rolled over files to keep (in this case, 50) -->
+            <maxHistory>50</maxHistory>
         </rollingPolicy>
-        <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        <!-- Pattern for log messages -->
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <!-- Include a timestamp in each log entry with a specific pattern and timezone -->
+                <timestamp>
+                    <fieldName>@timestamp</fieldName>
+                    <pattern>yyyy-MM-dd'T'HH:mm:ss.SSSZ</pattern>
+                    <timeZone>Asia/Tokyo</timeZone>
+                </timestamp>
+                <!-- Add the log level (e.g., INFO, ERROR) to each log entry -->
+                <logLevel/>
+                <!-- Include arguments passed in the log entry if any -->
+                <arguments>
+                </arguments>
+                <!-- Specify the main message of the log with a field name 'msg' -->
+                <message>
+                    <fieldName>msg</fieldName>
+                </message>
+                <!-- Include the name of the thread where the log was generated -->
+                <threadName/>
+                <!-- Include the name of the logger which generated the log -->
+                <loggerName/>
+                <!-- Include values from the MDC (Mapped Diagnostic Context) for context-specific information -->
+                <mdc>
+                    <includeMdcKeyName>traceId</includeMdcKeyName>
+                    <includeMdcKeyName>spanId</includeMdcKeyName>
+                    <includeMdcKeyName>parentId</includeMdcKeyName>
+                    <includeMdcKeyName>uniqueLogId</includeMdcKeyName>
+                </mdc>
+            </providers>
         </encoder>
+        <!-- Filter to log only INFO and higher levels -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
     </appender>
 
-    <root level="info">
-        <appender-ref ref="FILE" />
+    <!-- ERROR level log configuration -->
+    <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${ERROR_LOG_PATH}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/error/error.%d{yyyy-MM-dd-HH}.log</fileNamePattern>
+            <maxHistory>50</maxHistory>
+        </rollingPolicy>
+        <!-- Pattern for log messages -->
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <!-- Include a timestamp in each log entry with a specific pattern and timezone -->
+                <timestamp>
+                    <fieldName>@timestamp</fieldName>
+                    <pattern>yyyy-MM-dd'T'HH:mm:ss.SSSZ</pattern>
+                    <timeZone>Asia/Tokyo</timeZone>
+                </timestamp>
+                <logLevel/>
+                <arguments>
+                </arguments>
+                <message>
+                    <fieldName>msg</fieldName>
+                </message>
+                <threadName/>
+                <loggerName/>
+                <mdc>
+                    <includeMdcKeyName>traceId</includeMdcKeyName>
+                    <includeMdcKeyName>spanId</includeMdcKeyName>
+                    <includeMdcKeyName>parentId</includeMdcKeyName>
+                    <includeMdcKeyName>uniqueLogId</includeMdcKeyName>
+                </mdc>
+            </providers>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!-- Define the root logger with references to both INFO and ERROR appenders -->
+    <root level="INFO">
+        <appender-ref ref="INFO_FILE" />
+        <appender-ref ref="ERROR_FILE" />
     </root>
 </configuration>

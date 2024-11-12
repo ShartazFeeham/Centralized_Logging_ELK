@@ -3,6 +3,6 @@ spring:
     name: application_1
 server:
   port: 8081
-logging:
-  file:
-    name: src/logs/app.log
+#logging:
+#  file:
+#    name: src/logs/app.log
