@@ -53,7 +53,7 @@ services:
     command: ["filebeat", "-e", "--strict.perms=false"]
     volumes:
       - ./filebeat.yml:/usr/share/filebeat/filebeat.yml:ro  # Mount your Filebeat config
-      - E:/Code/Centralized logging/spring app 1/src/logs/app.log:/var/log/app_1.log:ro  # Mount logs from your application
+      - E:/Code/Centralized logging/spring app 1/src/logs/:/var/log/app_1/:ro  # Mount logs from your application
     networks:
       - elastic
     depends_on:

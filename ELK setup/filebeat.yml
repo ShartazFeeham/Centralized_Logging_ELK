@@ -2,7 +2,7 @@ filebeat.inputs:
   - type: log
     enabled: true
     paths:
-      - /var/log/*.log  # Specify the path to your log files
+      - /var/log/app_1/*.log  # Specify the path to your log files
 
 output.logstash:
   hosts: ["logstash:5044"]  # Send logs to Logstash
